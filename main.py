@@ -6,6 +6,7 @@ from handlers.routes import router, check_reminders
 from handlers.routes import init_db
 
 load_dotenv()
+ADMIN_ID = int(getenv("ADMIN_ID"))
 dp = Dispatcher()
 dp.include_router(router)
 TOKEN = getenv("BOT_TOKEN")

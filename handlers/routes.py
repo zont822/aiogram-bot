@@ -13,6 +13,7 @@ from forms.user import Form
 from datetime import datetime
 import aiosqlite
 import asyncio
+from main import ADMIN_ID
 
 
 
@@ -21,7 +22,6 @@ router = Router()
 
 DB_NAME = 'bazadanyh.sql'
 
-ADMINS_ID = [7636147669]
 
 SERVICES = ["Стрижка", "Бразильське фарбування", "Завивка"]
 
@@ -252,7 +252,7 @@ async def process_cancel(callback:CallbackQuery, state: FSMContext):
 async def admin(message:Message, state:FSMContext):
     await message.answer("Провіряємо ваш ID:...")
     
-    if  message.from_user.id not in ADMINS_ID:
+    if  message.from_user.id != ADMIN_ID:
         await message.answer("У вас немає доступу")
         return
     
