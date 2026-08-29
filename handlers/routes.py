@@ -13,8 +13,7 @@ from forms.user import Form
 from datetime import datetime
 import aiosqlite
 import asyncio
-from main import ADMIN_ID
-
+from config import ADMIN_ID
 
 
 router = Router()
