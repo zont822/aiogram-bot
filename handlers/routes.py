@@ -324,7 +324,7 @@ async def process_contacts(callback:CallbackQuery):
     contacts_text =(
                 "<b>НАШІ КОНТАКТИ:</b>\n\n"
             "Місцезнаходження — <a href='https://google.com'>Google Maps</a>\n"
-            "Номер телефону — <code>+13123513541</code>\n"
+            "Номер телефону — <code>+xxxxxxxxxxx</code>\n"
             "Наш Інстаграм — <a href='https://instagram.com'>Instagram</a>"
     )
     await callback.message.answer(contacts_text, parse_mode="HTML")
@@ -350,7 +350,7 @@ async def process_number(message:Message, state: FSMContext):
     phone_number = message.text
     
     if not phone_number.startswith("+") or not phone_number[1:].isdigit() or len(phone_number) != 13:
-        await message.answer("Номер введено не коректно\nПриклад номеру:+380999999999")
+        await message.answer("Номер введено не коректно\nПриклад номеру:+380xxxxxxxxx")
         return
     
     
@@ -379,10 +379,10 @@ async def process_date(message:Message, state:FSMContext):
     try:
         input_date = datetime.strptime(message.text, "%d.%m.%Y").date()
         if input_date < datetime.now().date():
-            await message.answer("Ця дата вже минула! Введіть майбутню дату (наприклад: 29.08.2026):")
+            await message.answer("Ця дата вже минула! Введіть майбутню дату (наприклад: дд.мм.рррр):")
             return
     except ValueError:
-        await message.answer("Неправильний формат дати. Приклад: 29.08.2026")
+        await message.answer("Неправильний формат дати. Приклад: дд.мм.рррр")
         return
         
     await state.update_data(date=date_text)
